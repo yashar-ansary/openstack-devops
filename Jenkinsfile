@@ -15,4 +15,13 @@ pipeline {
         ''' 
       }
     }
+    stage('Deploy Infrastructure') {
+      steps {
+        echo '--Running Ansible Kolla Prechecks Script --'
+        sh '''#!/bin/bash 
+        kolla-ansible -i /etc/kolla/all-in-one deploy
+        ''' 
+      }
+    }
+  }
 }
