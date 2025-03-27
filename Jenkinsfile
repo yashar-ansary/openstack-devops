@@ -6,6 +6,7 @@ pipeline {
                 echo '--RUNNING LOCAL ENVIRONMENT --'
                 sh '''#!/bin/bash
 		echo $USER
+                sudo apt update
                 '''
             }
         }
