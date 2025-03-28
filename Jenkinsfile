@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('Debug') {
             steps {
-                sh 'sudo apt install python3-virtualenv -y'
+                sh'''
+                apt update
+                apt install python3-pip
+                '''
             }
         }
     }
