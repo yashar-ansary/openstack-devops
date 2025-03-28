@@ -12,14 +12,14 @@ pipeline {
                 pip install -U pip
                 pip install 'ansible-core>=2.16,<2.17.99'
                 git clone --branch main https://github.com/yashar-ansary/openstack-devops.git
-                pip install ./kolla-ansible
+                pip install ./openstack-devops
                 sudo mkdir -p /etc/kolla
                 sudo chown $USER:$USER /etc/kolla
-                cp -r kolla-ansible/etc/kolla/* /etc/kolla
-                cp kolla-ansible/ansible/inventory/* .
+                cp -r openstack-devops/etc/kolla/* /etc/kolla
+                cp openstack-devops/ansible/inventory/* .
                 kolla-ansible install-deps
-                cd kolla-ansible/tools
-                cd kolla-ansible/tools
+                cd openstack-devops/tools
+                ./generate_passwords.py
                 
                 '''
             }
