@@ -8,7 +8,7 @@ pipeline {
 		echo $USER
                 echo $PATH
                 sudo apt update
-                sudo apt install python3-dev libffi-dev gcc libssl-dev -y
+                sudo /usr/bin/apt-get install python3-dev libffi-dev gcc libssl-dev -y
                 sudo apt-get install python3-pip -y
                 sudo apt-get install python3.10-venv -y
                 python3 -m venv local
