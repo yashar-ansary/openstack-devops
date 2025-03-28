@@ -4,8 +4,8 @@ pipeline {
         stage('Debug') {
             steps {
                 sh'''
-                apt update
-                apt install python3-pip
+                sudo apt update
+                sudo apt install python3-pip
                 '''
             }
         }
