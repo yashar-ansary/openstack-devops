@@ -6,6 +6,7 @@ pipeline {
                 echo '--RUNNING LOCAL ENVIRONMENT --'
                 sh '''#!/bin/bash
 		echo $USER
+                echo $PATH
                 sudo apt update
                 sudo apt-get install python3-dev libffi-dev gcc libssl-dev -y
                 sudo apt-get install python3-pip -y
