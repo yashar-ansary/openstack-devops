@@ -5,6 +5,7 @@ pipeline {
             steps {
                 echo '--RUNNING LOCAL ENVIRONMENT --'
                 sh'''#!/bin/bash
+		pwd
                 sudo apt install git python3-dev libffi-dev gcc libssl-dev -y 
                 sudo apt install python3-virtualenv -y 
                 virtualenv kolla-env
