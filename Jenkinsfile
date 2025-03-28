@@ -21,6 +21,11 @@ pipeline {
                 kolla-ansible install-deps
                 cd openstack-devops/tools
                 ./generate_passwords.py
+                ./kolla-ansible -i ../../all-in-one bootstrap-servers
+		./kolla-ansible -i ../../all-in-one bootstrap-servers
+		kolla-ansible -i ../../all-in-one deploy
+		pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/2024.2
+		./kolla-ansible post-deploy
                 
                 '''
             }
