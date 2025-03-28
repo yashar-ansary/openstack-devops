@@ -5,12 +5,22 @@ pipeline {
             steps {
                 echo '--RUNNING LOCAL ENVIRONMENT --'
                 sh'''
-                sudo apt-get update
-                sudo apt-get install -y python3-dev libffi-dev gcc libssl-dev docker.io
-                sudo apt install -y python3-pip python3.10-venv
+                sudo apt install git python3-dev libffi-dev gcc libssl-dev -y 
+                sudo apt install python3-virtualenv -y 
+                virtualenv kolla-env
+                source kolla-env/bin/activate
+                pip install -U pip
+                pip install 'ansible-core>=2.16,<2.17.99'
+                git clone --branch main https://github.com/yashar-ansary/openstack-devops.git
+                pip install ./kolla-ansible
+                sudo mkdir -p /etc/kolla
+                sudo chown $USER:$USER /etc/kolla
+                cp -r kolla-ansible/etc/kolla/* /etc/kolla
+                cp kolla-ansible/ansible/inventory/* .
+                kolla-ansible install-deps
+                cd kolla-ansible/tools
+                cd kolla-ansible/tools
                 
-                python3 -m venv local
-                . local/bin/activate
                 '''
             }
         }
