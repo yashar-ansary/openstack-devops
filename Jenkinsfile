@@ -4,7 +4,7 @@ pipeline {
         stage('Setup Local Environment') {
             steps {
                 echo '--RUNNING LOCAL ENVIRONMENT --'
-                sh '''
+                sh '''#!/bin/bash
 		echo $USER
                 sudo apt update
                 sudo apt install python3-dev libffi-dev gcc libssl-dev -y
