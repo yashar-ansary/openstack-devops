@@ -22,9 +22,9 @@ pipeline {
                 cd openstack-devops/tools
                 ./generate_passwords.py
                 cd		
-		kolla-ansible bootstrap-servers -i all-in-one
-		kolla-ansible prechecks -i all-in-one
-		kolla-ansible deploy -i all-in-one
+		kolla-ansible bootstrap-servers -i ./all-in-one
+		kolla-ansible prechecks -i ./all-in-one
+		kolla-ansible deploy -i ./all-in-one
 		pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/2024.2
 		kolla-ansible post-deploy
                 
