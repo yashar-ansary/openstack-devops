@@ -17,14 +17,14 @@ pipeline {
                 sudo mkdir -p /etc/kolla
                 sudo chown $USER:$USER /etc/kolla
                 cp -r etc/kolla/* /etc/kolla
-                cp openstack-devops/ansible/inventory/* .
+                cp openstack-devops/ansible/inventory/* /etc/kolla
                 kolla-ansible install-deps
                 cd openstack-devops/tools
                 ./generate_passwords.py
                 cd		
-		kolla-ansible bootstrap-servers -i ./all-in-one
-		kolla-ansible prechecks -i ./all-in-one
-		kolla-ansible deploy -i ./all-in-one
+		kolla-ansible bootstrap-servers -i /etc/kolla/all-in-one
+		kolla-ansible prechecks -i /etc/kolla/all-in-one
+		kolla-ansible deploy -i /etc/kolla/all-in-one
 		pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/2024.2
 		kolla-ansible post-deploy
                 
