@@ -12,14 +12,14 @@ pipeline {
                 source kolla-env/bin/activate
                 pip install -U pip
                 pip install 'ansible-core>=2.15,<2.16.99'
-                git clone --branch main https://github.com/yashar-ansary/openstack-devops.git
-                pip install ./openstack-devops
+                // git clone --branch main https://github.com/yashar-ansary/openstack-devops.git
+                pip install .
                 sudo mkdir -p /etc/kolla
                 sudo chown $USER:$USER /etc/kolla
                 cp -r etc/kolla/* /etc/kolla
-                cp openstack-devops/ansible/inventory/* /etc/kolla
+                cp ./ansible/inventory/all-in-one /etc/kolla
                 kolla-ansible install-deps
-                cd openstack-devops/tools
+                cd tools
                 ./generate_passwords.py
                 cd
                 kolla-ansible bootstrap-servers -i /etc/kolla/all-in-one
@@ -27,7 +27,6 @@ pipeline {
                 kolla-ansible deploy -i /etc/kolla/all-in-one
                 pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/2024.2
                 kolla-ansible post-deploy
-
                 '''
             }
         }
