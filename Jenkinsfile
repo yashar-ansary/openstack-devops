@@ -6,12 +6,12 @@ pipeline {
                 echo '--RUNNING LOCAL ENVIRONMENT --'
                 sh'''#!/bin/bash
                 pwd
-                sudo apt install git python3-dev libffi-dev gcc libssl-dev -y
+                sudo apt install git python3-dev libffi-dev gcc libssl-dev
                 sudo apt install python3-virtualenv -y
                 virtualenv kolla-env
                 source kolla-env/bin/activate
                 pip install -U pip
-                pip install 'ansible-core>=2.16,<2.17.99'
+                pip install 'ansible-core>=2.15,<2.16.99'
                 git clone --branch main https://github.com/yashar-ansary/openstack-devops.git
                 pip install ./openstack-devops
                 sudo mkdir -p /etc/kolla
